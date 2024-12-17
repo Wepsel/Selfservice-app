@@ -7,6 +7,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 namespace MooieWelkomApp
 {
@@ -17,7 +18,53 @@ namespace MooieWelkomApp
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
             ShowLoadingScreen();
+            ApplyChristmasTheme();
         }
+        private void ApplyChristmasTheme()
+        {
+            DateTime today = DateTime.Now;
+            if (today.Month == 12 && today.Day >= 6)
+            {
+                txtWelcome.Text = $"🎄 Vrolijke Kerstdagen, {Environment.UserName}! 🎄";
+                txtWelcome.Foreground = new SolidColorBrush(Colors.Gold);
+                EnableSnowfall();
+            }
+        }
+
+        private void EnableSnowfall()
+        {
+            Random random = new Random();
+            for (int i = 0; i < 50; i++) // Sneeuwvlokken
+            {
+                var snowflake = new TextBlock
+                {
+                    Text = "❄",
+                    FontSize = random.Next(20, 40),
+                    Foreground = Brushes.White,
+                    Opacity = 0.8
+                };
+
+                var transform = new TranslateTransform
+                {
+                    X = random.Next(0, (int)this.Width),
+                    Y = -50
+                };
+
+                snowflake.RenderTransform = transform;
+                SnowfallCanvas.Children.Add(snowflake);
+
+                DoubleAnimation animation = new DoubleAnimation
+                {
+                    From = -50,
+                    To = this.Height,
+                    Duration = TimeSpan.FromSeconds(random.Next(5, 15)),
+                    RepeatBehavior = RepeatBehavior.Forever
+                };
+
+                transform.BeginAnimation(TranslateTransform.YProperty, animation);
+            }
+        }
+
         private void NavigateToHome_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Navigeren naar Homepagina.");

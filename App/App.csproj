@@ -8,9 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\chrome.png" />
     <None Remove="Images\dell.png" />
     <None Remove="Images\magister.png" />
+    <None Remove="Images\snowflake.png" />
     <None Remove="Images\toetsenbord.png" />
     <None Remove="Images\wifi.png" />
     <None Remove="Images\windows_update.png" />
@@ -26,6 +34,7 @@
   <ItemGroup>
     <Resource Include="Images\chrome.png" />
     <Resource Include="Images\dell.png" />
+    <Resource Include="Images\snowflake.png" />
     <Resource Include="Images\toetsenbord.png" />
     <Resource Include="Images\wifi.png" />
     <Resource Include="Images\windows_update.png" />

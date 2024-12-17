@@ -40,6 +40,8 @@
 
     <!-- Hoofd Grid -->
     <Grid Background="{StaticResource GradientBackground}">
+        <!-- Canvas voor sneeuwvlokken -->
+        <Canvas x:Name="SnowfallCanvas" IsHitTestVisible="False"/>
         <DockPanel>
             <!-- Menu links -->
             <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="220">
