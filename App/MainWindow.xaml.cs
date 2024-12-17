@@ -23,7 +23,7 @@ namespace MooieWelkomApp
             MessageBox.Show("Navigeren naar Homepagina.");
         }
 
-        private void NavigateToSettings_Click(object sender, RoutedEventArgs e)
+        private void NavigateToOpstartApps_Click(object sender, RoutedEventArgs e)
         {
             // Maak het nieuwe venster en open het
             StartupAppsWindow startupWindow = new StartupAppsWindow();

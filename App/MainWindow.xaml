@@ -23,7 +23,7 @@
             <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="200">
                 <TextBlock Text="Menu" FontSize="18" Foreground="White" Margin="10"/>
                 <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5"/>
-                <Button Content="Instellingen" Background="Transparent" Foreground="White" Click="NavigateToSettings_Click" Margin="5"/>
+                <Button Content="Opstart Apps" Background="Transparent" Foreground="White" Click="NavigateToOpstartApps_Click" Margin="5"/>
                 <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5"/>
             </StackPanel>
 
