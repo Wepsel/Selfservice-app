@@ -7,20 +7,19 @@
         <!-- Kleuren en stijlen -->
         <SolidColorBrush x:Key="PrimaryColor" Color="#1E88E5" />
         <SolidColorBrush x:Key="SecondaryColor" Color="#1976D2" />
+
+        <!-- Knopstijl met afgeronde hoeken -->
         <Style x:Key="SquareButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="120" />
             <Setter Property="Height" Value="120" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" 
-                        CornerRadius="10"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        SnapsToDevicePixels="True"
-                        Effect="{DynamicResource DropShadow}">
+                                CornerRadius="10" BorderBrush="Transparent" BorderThickness="0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -33,7 +32,6 @@
             </Setter>
         </Style>
 
-
         <LinearGradientBrush x:Key="GradientBackground" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#1E1E2F" Offset="0.0" />
             <GradientStop Color="#424242" Offset="1.0" />
@@ -44,66 +42,36 @@
     <Grid Background="{StaticResource GradientBackground}">
         <DockPanel>
             <!-- Menu links -->
-            <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="220" Effect="{DynamicResource ShadowEffect}">
+            <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="220">
                 <TextBlock Text="Menu" FontSize="20" FontWeight="Bold" Foreground="White" Margin="10,20,10,20" HorizontalAlignment="Center"/>
-                <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5"
-                        Cursor="Hand" />
-                <Button Content="Opstart Apps" Background="Transparent" Foreground="White" Click="NavigateToOpstartApps_Click" Margin="5"
-                        Cursor="Hand" />
-                <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5"
-                        Cursor="Hand" />
+                <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5" />
+                <Button Content="Opstart Apps" Background="Transparent" Foreground="White" Click="NavigateToOpstartApps_Click" Margin="5" />
+                <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5" />
             </StackPanel>
 
             <!-- Hoofdinhoud -->
             <Grid>
                 <!-- Welkom tekst -->
-                <TextBlock x:Name="txtWelcome"
-                           Text="Welkom, Gebruiker"
-                           FontSize="36"
-                           FontWeight="Bold"
-                           Foreground="White"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Top"
-                           Margin="0,20,0,0" />
+                <TextBlock x:Name="txtWelcome" Text="Welkom, Gebruiker"
+                           FontSize="36" FontWeight="Bold" Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" />
 
                 <!-- Status Teksten -->
-                <TextBlock x:Name="txtLastUpdate"
-                           Text="Laatst bijgewerkt: Geen updates uitgevoerd"
-                           FontSize="14"
-                           Foreground="White"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Margin="0,0,10,10" />
-
-                <TextBlock x:Name="txtDellCommandLastUpdate"
-                           Text="Laatst bijgewerkte Dell Command Update: Geen updates uitgevoerd"
-                           FontSize="14"
-                           Foreground="White"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Margin="0,0,10,30" />
-
-                <TextBlock x:Name="txtUptime"
-                           Text="Computer is al 0 dagen 0 uren 0 minuten niet opnieuw opgestart"
-                           FontSize="14"
-                           Foreground="White"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Margin="0,0,10,50" />
+                <TextBlock x:Name="txtLastUpdate" Text="Laatst bijgewerkt: Geen updates uitgevoerd"
+                           FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" />
+                <TextBlock x:Name="txtDellCommandLastUpdate" Text="Laatst bijgewerkte Dell Command Update: Geen updates uitgevoerd"
+                           FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,30" />
+                <TextBlock x:Name="txtUptime" Text="Computer is al 0 dagen 0 uren 0 minuten niet opnieuw opgestart"
+                           FontSize="14" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,50" />
 
                 <!-- Popup voor meldingen -->
                 <Popup x:Name="NotificationPopup" Placement="Center" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
                     <Border Background="#FF5722" BorderBrush="#FF9100" BorderThickness="2" CornerRadius="10" Padding="10">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                            <TextBlock x:Name="txtNotification"
-                                       Text="Melding: Uw computer moet worden bijgewerkt"
-                                       Foreground="White"
-                                       FontSize="18"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,10"
-                                       TextWrapping="Wrap" />
-                            <Button Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="40" 
-                                    Background="#FF9100" BorderBrush="#FF5722" Foreground="White" Click="CloseNotification"/>
+                            <TextBlock x:Name="txtNotification" Text="Melding: Uw computer moet worden bijgewerkt"
+                                       Foreground="White" FontSize="18" HorizontalAlignment="Center" Margin="0,10" TextWrapping="Wrap" />
+                            <Button Content="OK" Width="80" Height="40" Background="#FF9100" BorderBrush="#FF5722"
+                                    Foreground="White" Click="CloseNotification" />
                         </StackPanel>
                     </Border>
                 </Popup>
@@ -120,32 +88,43 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <!-- Knoppen met modern design -->
+                    <!-- WiFi Problemen -->
                     <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="ResetWiFi_Click">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="Wifi" Width="50" Height="50" Foreground="White" />
-                            <TextBlock Text="WiFi Problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Wifi" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="WiFi Problemen" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
 
+                    <!-- Toetsenbord Problemen -->
                     <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="ResetKeyboardLayout_Click">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="Keyboard" Width="50" Height="50" Foreground="White" />
-                            <TextBlock Text="Toetsenbord Problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Keyboard" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Toetsenbord Problemen" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
 
+                    <!-- Chrome Cache -->
+                    <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareButtonStyle}" Click="ClearChromeCache_Click">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="GoogleChrome" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Chrome Cache" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Dell Updates -->
                     <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="InvokeDellCommandUpdate_Click">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="Update" Width="50" Height="50" Foreground="White" />
-                            <TextBlock Text="Dell Updates" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Update" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Dell Updates" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
 
+                    <!-- Windows Updates -->
                     <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="InvokeWindowsUpdate_Click">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="MicrosoftWindows" Width="50" Height="50" Foreground="White" />
-                            <TextBlock Text="Windows Updates" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="MicrosoftWindows" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Windows Updates" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </Grid>
