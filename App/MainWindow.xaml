@@ -1,34 +1,59 @@
 ﻿<Window x:Class="MooieWelkomApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Welkom" Height="600" Width="800" Background="#1E1E2F" WindowStartupLocation="CenterScreen">
     <Window.Resources>
+        <!-- Kleuren en stijlen -->
         <SolidColorBrush x:Key="PrimaryColor" Color="#1E88E5" />
         <SolidColorBrush x:Key="SecondaryColor" Color="#1976D2" />
         <Style x:Key="SquareButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="120" />
             <Setter Property="Height" Value="120" />
-            <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
-            <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Margin" Value="10" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="10"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="True"
+                        Effect="{DynamicResource DropShadow}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#42A5F5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+
+
+        <LinearGradientBrush x:Key="GradientBackground" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#1E1E2F" Offset="0.0" />
+            <GradientStop Color="#424242" Offset="1.0" />
+        </LinearGradientBrush>
     </Window.Resources>
 
-    <Grid>
+    <!-- Hoofd Grid -->
+    <Grid Background="{StaticResource GradientBackground}">
         <DockPanel>
             <!-- Menu links -->
-            <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="200">
-                <TextBlock Text="Menu" FontSize="18" Foreground="White" Margin="10"/>
-                <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5"/>
-                <Button Content="Opstart Apps" Background="Transparent" Foreground="White" Click="NavigateToOpstartApps_Click" Margin="5"/>
-                <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5"/>
+            <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="220" Effect="{DynamicResource ShadowEffect}">
+                <TextBlock Text="Menu" FontSize="20" FontWeight="Bold" Foreground="White" Margin="10,20,10,20" HorizontalAlignment="Center"/>
+                <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5"
+                        Cursor="Hand" />
+                <Button Content="Opstart Apps" Background="Transparent" Foreground="White" Click="NavigateToOpstartApps_Click" Margin="5"
+                        Cursor="Hand" />
+                <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5"
+                        Cursor="Hand" />
             </StackPanel>
 
-            <!-- Frame voor navigatie -->
-            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
             <!-- Hoofdinhoud -->
             <Grid>
                 <!-- Welkom tekst -->
@@ -36,7 +61,7 @@
                            Text="Welkom, Gebruiker"
                            FontSize="36"
                            FontWeight="Bold"
-                           Foreground="#FFFFFF"
+                           Foreground="White"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
                            Margin="0,20,0,0" />
@@ -45,7 +70,7 @@
                 <TextBlock x:Name="txtLastUpdate"
                            Text="Laatst bijgewerkt: Geen updates uitgevoerd"
                            FontSize="14"
-                           Foreground="#FFFFFF"
+                           Foreground="White"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Margin="0,0,10,10" />
@@ -53,7 +78,7 @@
                 <TextBlock x:Name="txtDellCommandLastUpdate"
                            Text="Laatst bijgewerkte Dell Command Update: Geen updates uitgevoerd"
                            FontSize="14"
-                           Foreground="#FFFFFF"
+                           Foreground="White"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Margin="0,0,10,30" />
@@ -61,17 +86,13 @@
                 <TextBlock x:Name="txtUptime"
                            Text="Computer is al 0 dagen 0 uren 0 minuten niet opnieuw opgestart"
                            FontSize="14"
-                           Foreground="#FFFFFF"
+                           Foreground="White"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Margin="0,0,10,50" />
 
                 <!-- Popup voor meldingen -->
-                <Popup x:Name="NotificationPopup"
-                       Placement="Center"
-                       StaysOpen="False"
-                       AllowsTransparency="True"
-                       PopupAnimation="Fade">
+                <Popup x:Name="NotificationPopup" Placement="Center" StaysOpen="False" AllowsTransparency="True" PopupAnimation="Fade">
                     <Border Background="#FF5722" BorderBrush="#FF9100" BorderThickness="2" CornerRadius="10" Padding="10">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                             <TextBlock x:Name="txtNotification"
@@ -81,12 +102,13 @@
                                        HorizontalAlignment="Center"
                                        Margin="0,10"
                                        TextWrapping="Wrap" />
-                            <Button Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="40" Background="#FF9100" BorderBrush="#FF5722" Foreground="White" Click="CloseNotification"/>
+                            <Button Content="OK" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="40" 
+                                    Background="#FF9100" BorderBrush="#FF5722" Foreground="White" Click="CloseNotification"/>
                         </StackPanel>
                     </Border>
                 </Popup>
 
-                <!-- UI Buttons voor probleemoplossing -->
+                <!-- UI Knoppen -->
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -98,38 +120,32 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="btnResetWiFi_Click" Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="ResetWiFi_Click">
-                        <StackPanel>
-                            <Image Source="pack://application:,,,/Images/wifi.png" Width="50" Height="50" />
-                            <TextBlock Text="WiFi problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                    <!-- Knoppen met modern design -->
+                    <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="ResetWiFi_Click">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Wifi" Width="50" Height="50" Foreground="White" />
+                            <TextBlock Text="WiFi Problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
                         </StackPanel>
                     </Button>
 
-                    <Button Name="btnResetKeyboardLayout_Click" Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="ResetKeyboardLayout_Click">
-                        <StackPanel>
-                            <Image Source="pack://application:,,,/Images/toetsenbord.png" Width="50" Height="50" />
-                            <TextBlock Text="Toetsenbord problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
+                    <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="ResetKeyboardLayout_Click">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Keyboard" Width="50" Height="50" Foreground="White" />
+                            <TextBlock Text="Toetsenbord Problemen" Foreground="White" FontSize="14" Margin="0,5,0,0" />
                         </StackPanel>
                     </Button>
 
-                    <Button Name="btnInvokeDellCommandUpdate_Click" Grid.Row="1" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="InvokeDellCommandUpdate_Click">
-                        <StackPanel>
-                            <Image Source="pack://application:,,,/Images/dell.png" Width="50" Height="50" />
+                    <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="InvokeDellCommandUpdate_Click">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Update" Width="50" Height="50" Foreground="White" />
                             <TextBlock Text="Dell Updates" Foreground="White" FontSize="14" Margin="0,5,0,0" />
                         </StackPanel>
                     </Button>
 
-                    <Button Name="btnInvokeWindowsUpdate_Click" Grid.Row="1" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="InvokeWindowsUpdate_Click">
-                        <StackPanel>
-                            <Image Source="pack://application:,,,/Images/windows_update.png" Width="50" Height="50" />
+                    <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="InvokeWindowsUpdate_Click">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="MicrosoftWindows" Width="50" Height="50" Foreground="White" />
                             <TextBlock Text="Windows Updates" Foreground="White" FontSize="14" Margin="0,5,0,0" />
-                        </StackPanel>
-                    </Button>
-
-                    <Button Name="btnClearChromeCache_Click" Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareButtonStyle}" Click="ClearChromeCache_Click">
-                        <StackPanel>
-                            <Image Source="pack://application:,,,/Images/chrome.png" Width="50" Height="50" />
-                            <TextBlock Text="Chrome Cache" Foreground="White" FontSize="14" Margin="0,5,0,0" />
                         </StackPanel>
                     </Button>
                 </Grid>

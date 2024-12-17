@@ -13,7 +13,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <!-- CheckBox met correcte binding naar IsEnabled -->
+                        <!-- CheckBox met binding naar IsEnabled -->
                         <CheckBox IsChecked="{Binding IsEnabled}" 
                                   Tag="{Binding}" 
                                   Checked="CheckBox_Checked" 

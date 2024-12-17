@@ -47,12 +47,8 @@ namespace MooieWelkomApp
                     foreach (var appName in approvedKey.GetValueNames())
                     {
                         byte[] status = approvedKey.GetValue(appName) as byte[];
-                        if (status != null && status.Length > 0)
-                        {
-                            // Status van app bepalen
-                            bool isEnabled = status[0] == 0;
-                            approvedApps[appName] = isEnabled;
-                        }
+                        bool isEnabled = status != null && status[0] == 0;
+                        approvedApps[appName] = isEnabled;
                     }
                 }
             }
@@ -65,7 +61,7 @@ namespace MooieWelkomApp
                     foreach (var appName in runKey.GetValueNames())
                     {
                         string path = runKey.GetValue(appName)?.ToString();
-                        bool isEnabled = approvedApps.ContainsKey(appName) ? approvedApps[appName] : true; // Default ingeschakeld als onbekend
+                        bool isEnabled = approvedApps.ContainsKey(appName) ? approvedApps[appName] : true;
 
                         startupApps.Add(new StartupApp
                         {
@@ -75,21 +71,6 @@ namespace MooieWelkomApp
                             Source = source
                         });
                     }
-                }
-            }
-
-            // Voeg uitgeschakelde apps toe die niet in de Run-sleutel staan
-            foreach (var appName in approvedApps.Keys)
-            {
-                if (!startupApps.Any(a => a.Name == appName))
-                {
-                    startupApps.Add(new StartupApp
-                    {
-                        Name = appName,
-                        Path = "Uitgeschakeld",
-                        IsEnabled = false,
-                        Source = source
-                    });
                 }
             }
         }
@@ -122,14 +103,19 @@ namespace MooieWelkomApp
                 {
                     if (enable)
                     {
-                        // Zet app aan
-                        runKey.SetValue(app.Name, app.Path);
+                        // Zorg dat de app weer wordt ingeschakeld
+                        if (string.IsNullOrEmpty(app.Path))
+                        {
+                            MessageBox.Show("Het pad voor de app is ongeldig, kan niet inschakelen.");
+                            return;
+                        }
+
+                        runKey.SetValue(app.Name, app.Path); // Voeg terug toe aan Run
                         approvedKey.SetValue(app.Name, new byte[] { 0, 0, 0, 0 }); // Ingeschakeld
                     }
                     else
                     {
-                        // Zet app uit
-                        runKey.DeleteValue(app.Name, false);
+                        // Zet de app uit, maar verwijder deze NIET uit Run
                         approvedKey.SetValue(app.Name, new byte[] { 2, 0, 0, 0 }); // Uitgeschakeld
                     }
                 }
@@ -142,9 +128,18 @@ namespace MooieWelkomApp
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
+            // Zorg ervoor dat het hoofdmenu (MainWindow) weer wordt geopend
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            mainWindow?.Show();
-            this.Close();
+
+            if (mainWindow == null)
+            {
+                // Als MainWindow niet gevonden wordt, maak een nieuw exemplaar aan
+                mainWindow = new MainWindow();
+            }
+
+            mainWindow.Show(); // Toon het hoofdmenu
+            this.Close();      // Sluit dit venster
         }
+
     }
 }
