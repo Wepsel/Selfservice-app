@@ -42,6 +42,34 @@
     <Grid Background="{StaticResource GradientBackground}">
         <!-- Canvas voor sneeuwvlokken -->
         <Canvas x:Name="SnowfallCanvas" IsHitTestVisible="False"/>
+        <Grid x:Name="OverlayMenu" Visibility="Collapsed" Background="#AA1E1E2F" Panel.ZIndex="100">
+            <Border Background="#29293F" CornerRadius="10" Padding="20" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" Width="350">
+                <StackPanel>
+                    <TextBlock Text="Kies de gewenste school" 
+                           FontSize="18" FontWeight="Bold" Foreground="White" 
+                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <!-- Knop Kempenhorst -->
+                    <Button Content="Kempenhorst" Click="Kempenhorst_Click"
+                        Width="200" Height="40" Margin="10"
+                        Background="#1E88E5" Foreground="White" 
+                        Cursor="Hand" HorizontalAlignment="Center"/>
+
+                    <!-- Knop Heerbeeck -->
+                    <Button Content="Heerbeeck" Click="Heerbeeck_Click"
+                        Width="200" Height="40" Margin="10"
+                        Background="#42A5F5" Foreground="White" 
+                        Cursor="Hand" HorizontalAlignment="Center"/>
+
+                    <!-- Annuleren knop -->
+                    <Button Content="Annuleren" Click="Cancel_Click"
+                        Width="200" Height="40" Margin="10"
+                        Background="#D32F2F" Foreground="White" 
+                        Cursor="Hand" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
         <DockPanel>
             <!-- Menu links -->
             <StackPanel DockPanel.Dock="Left" Background="{StaticResource SecondaryColor}" Width="220">
@@ -127,6 +155,13 @@
                         <StackPanel>
                             <materialDesign:PackIcon Kind="MicrosoftWindows" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
                             <TextBlock Text="Windows Updates" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <!-- Printer Installeren -->
+                    <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource SquareButtonStyle}" Click="InstallPrinter_Click">
+                        <StackPanel>
+                            <materialDesign:PackIcon Kind="Printer" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Printer Installeren" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </Grid>

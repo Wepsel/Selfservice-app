@@ -17,8 +17,8 @@ namespace MooieWelkomApp
         {
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
-            ShowLoadingScreen();
             ApplyChristmasTheme();
+            ShowLoadingScreen();
         }
         private void ApplyChristmasTheme()
         {
@@ -426,5 +426,143 @@ namespace MooieWelkomApp
                 MessageBox.Show($"Er is een fout opgetreden bij het starten van Windows Updates: {ex.Message}");
             }
         }
+
+        // Controleer of een specifieke printer al geïnstalleerd is
+        private bool IsPrinterInstalled(string printerName)
+        {
+            try
+            {
+                // PowerShell commando om geïnstalleerde printers op te halen
+                string command = $"Get-Printer | Where-Object {{$_.Name -eq '{printerName}'}}";
+
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "powershell",
+                    Arguments = $"-NoProfile -Command \"{command}\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true
+                };
+
+                using (Process process = Process.Start(psi))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+
+                    // Controleer of er output is; als er output is, bestaat de printer
+                    return !string.IsNullOrWhiteSpace(output);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fout bij het controleren van printers: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+        private void InstallPrinter_Click(object sender, RoutedEventArgs e)
+        {
+            string printerName = "VoBo-Printer";
+
+            // Controleer of de printer al geïnstalleerd is
+            if (IsPrinterInstalled(printerName))
+            {
+                MessageBox.Show($"De printer '{printerName}' is al geïnstalleerd op deze computer.", "Printer Bestaat Al", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            // Toon het overlay-menu
+            OverlayMenu.Visibility = Visibility.Visible;
+        }
+
+        private void Kempenhorst_Click(object sender, RoutedEventArgs e)
+        {
+            OverlayMenu.Visibility = Visibility.Collapsed;
+            string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Printer\\InstallPrinter_Kempenhorst.bat");
+            ExecuteBatchFile(scriptPath);
+        }
+
+        private void Heerbeeck_Click(object sender, RoutedEventArgs e)
+        {
+            OverlayMenu.Visibility = Visibility.Collapsed;
+            string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Printer\\InstallPrinter_Heerbeeck.bat");
+            ExecuteBatchFile(scriptPath);
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            OverlayMenu.Visibility = Visibility.Collapsed;
+        }
+
+
+        // Voer een batchbestand uit
+        private async void ExecuteBatchFile(string scriptPath)
+        {
+            if (!File.Exists(scriptPath))
+            {
+                MessageBox.Show($"Het batchbestand '{scriptPath}' kon niet worden gevonden.", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", $"/c \"{scriptPath}\"")
+                {
+                    UseShellExecute = true, // Vereist voor "runas"
+                    Verb = "runas", // Start als administrator
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = false, // Schakel uit als UseShellExecute aan staat
+                    RedirectStandardError = false
+                };
+
+                using (Process process = Process.Start(processInfo))
+                {
+                    process.WaitForExit();
+                    int exitCode = process.ExitCode;
+
+                    if (exitCode == 1)
+                    {
+                        MessageBox.Show("Printerinstallatie is succesvol uitgevoerd! De computer wordt over 10 seconden opnieuw opgestart.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        // Start een timer van 10 seconden voordat de computer opnieuw wordt opgestart
+                        DispatcherTimer restartTimer = new DispatcherTimer
+                        {
+                            Interval = TimeSpan.FromSeconds(10)
+                        };
+                        restartTimer.Tick += (s, e) =>
+                        {
+                            restartTimer.Stop();
+                            RestartComputer();
+                        };
+                        restartTimer.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Fout bij installatie. Exitcode: {exitCode}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een onverwachte fout opgetreden: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void RestartComputer()
+        {
+            try
+            {
+                ProcessStartInfo restartInfo = new ProcessStartInfo("shutdown", "/r /t 0")
+                {
+                    UseShellExecute = true,
+                    CreateNoWindow = true
+                };
+                Process.Start(restartInfo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Er is een fout opgetreden bij het herstarten: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

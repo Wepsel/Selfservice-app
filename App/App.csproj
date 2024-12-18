@@ -22,6 +22,33 @@
     <None Remove="Images\toetsenbord.png" />
     <None Remove="Images\wifi.png" />
     <None Remove="Images\windows_update.png" />
+    <None Remove="Printer\CanonDriver\cnp60m.cat" />
+    <None Remove="Printer\CanonDriver\CNP60MA64.INF" />
+    <None Remove="Printer\CanonDriver\gppcl6.cab" />
+    <None Remove="Printer\InstallPrinter_Kempenhorst.bat" />
+    <None Remove="Printer\PrinterRegFiles\LPR.reg" />
+    <None Remove="Printer\PrinterRegFiles\Printer.reg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Printer\CanonDriver\cnp60m.cat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\CanonDriver\CNP60MA64.INF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\CanonDriver\gppcl6.cab">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\InstallPrinter_Kempenhorst.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\PrinterRegFiles\LPR.reg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\PrinterRegFiles\Printer.reg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
