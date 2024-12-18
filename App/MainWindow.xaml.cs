@@ -17,7 +17,7 @@ namespace MooieWelkomApp
         {
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
-            ApplyChristmasTheme();
+           // ApplyChristmasTheme();
             ShowLoadingScreen();
         }
         private void ApplyChristmasTheme()
@@ -70,7 +70,7 @@ namespace MooieWelkomApp
             MessageBox.Show("Navigeren naar Homepagina.");
         }
 
-        private void NavigateToOpstartApps_Click(object sender, RoutedEventArgs e)
+        private void NavigateToSnelkoppelingKempenhorst_Click(object sender, RoutedEventArgs e)
         {
             // Maak het nieuwe venster en open het
             StartupAppsWindow startupWindow = new StartupAppsWindow();
@@ -564,5 +564,9 @@ namespace MooieWelkomApp
             }
         }
 
+        private void NavigateToOpstartApps_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

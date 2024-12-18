@@ -1,0 +1,82 @@
+﻿<Window x:Class="MooieWelkomApp.StartupAppsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Snelkoppelingen" Height="600" Width="800" 
+        WindowStartupLocation="CenterScreen" Background="#1E1E2F">
+
+    <Window.Resources>
+        <!-- Knopstijl met afgeronde hoeken -->
+        <Style x:Key="ShortcutButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="140" />
+            <Setter Property="Height" Value="140" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="#1E88E5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" BorderBrush="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#42A5F5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Titel -->
+        <TextBlock Text="Snelkoppelingen voor Kempenhorst"
+                   FontSize="24" FontWeight="Bold" Foreground="White"
+                   HorizontalAlignment="Center" Margin="0,20,0,0" />
+
+        <!-- Grid voor snelkoppelingen -->
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Snelkoppeling: ELO -->
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ShortcutButtonStyle}" Click="OpenElo_Click">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="School" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock Text="ELO" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+            <!-- Snelkoppeling: Magister -->
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ShortcutButtonStyle}" Click="OpenMagister_Click">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="BookOpenPageVariant" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock Text="Magister" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+            <!-- Snelkoppeling: Webmail -->
+            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ShortcutButtonStyle}" Click="OpenWebmail_Click">
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Email" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock Text="Webmail" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!-- Terug-knop -->
+        <Button Content="Terug" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                Margin="20" Width="100" Height="40" Background="#D32F2F" Foreground="White"
+                Cursor="Hand" Click="CloseWindow_Click" />
+    </Grid>
+</Window>
