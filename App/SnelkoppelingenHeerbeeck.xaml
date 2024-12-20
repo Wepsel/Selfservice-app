@@ -1,4 +1,4 @@
-﻿<Window x:Class="MooieWelkomApp.StartupAppsWindow"
+﻿<Window x:Class="MooieWelkomApp.StartupAppsWindow2"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -42,7 +42,7 @@
 
     <Grid Background="{StaticResource GradientBackground}">
         <!-- Titel -->
-        <TextBlock Text="Snelkoppelingen voor Kempenhorst"
+        <TextBlock Text="Snelkoppelingen voor Heerbeeck"
                    FontSize="24" FontWeight="Bold" Foreground="White"
                    HorizontalAlignment="Center" Margin="0,20,0,0" />
 
@@ -59,10 +59,10 @@
             </Grid.RowDefinitions>
 
             <!-- Snelkoppeling: ELO -->
-            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="OpenElo_Click">
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource SquareButtonStyle}" Click="OpenHeerbeeck_Click">
                 <StackPanel>
                     <materialDesign:PackIcon Kind="School" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
-                    <TextBlock Text="ELO" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                    <TextBlock Text="Heerbeeck" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                 </StackPanel>
             </Button>
 

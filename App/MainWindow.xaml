@@ -76,7 +76,7 @@
                 <TextBlock Text="Menu" FontSize="20" FontWeight="Bold" Foreground="White" Margin="10,20,10,20" HorizontalAlignment="Center"/>
                 <Button Content="Home" Background="Transparent" Foreground="White" Click="NavigateToHome_Click" Margin="5" />
                 <Button Content="Kempenhorst apps" Background="Transparent" Foreground="White" Click="NavigateToSnelkoppelingKempenhorst_Click" Margin="5" />
-                <Button Content="Over" Background="Transparent" Foreground="White" Click="NavigateToAbout_Click" Margin="5" />
+                <Button Content="Heerbeeck apps" Background="Transparent" Foreground="White" Click="NavigateToSnelkoppelingHeerbeeck_Click" Margin="5" />
             </StackPanel>
 
             <!-- Hoofdinhoud -->

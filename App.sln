@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{CCF7ACD1-1613-40E3-84E9-23EF43776AA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "App\App.csproj", "{CCF7ACD1-1613-40E3-84E9-23EF43776AA4}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup Self Service", "Setup Self Service\Setup Self Service.vdproj", "{05F06E2F-E40E-48EF-8579-B941E55D9C38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{CCF7ACD1-1613-40E3-84E9-23EF43776AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCF7ACD1-1613-40E3-84E9-23EF43776AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCF7ACD1-1613-40E3-84E9-23EF43776AA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F06E2F-E40E-48EF-8579-B941E55D9C38}.Debug|Any CPU.ActiveCfg = Debug
+		{05F06E2F-E40E-48EF-8579-B941E55D9C38}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
