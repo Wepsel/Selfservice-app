@@ -568,10 +568,5 @@ namespace MooieWelkomApp
                 MessageBox.Show($"Er is een fout opgetreden bij het herstarten: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void NavigateToOpstartApps_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
