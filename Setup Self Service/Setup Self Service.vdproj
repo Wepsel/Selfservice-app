@@ -209,7 +209,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup Self Service"
         "ProductCode" = "8:{C69371A3-C3A6-4FB6-B13D-B44A80F669B4}"
-        "PackageCode" = "8:{15E2E98D-8F2D-46DB-866D-2E791AA937CD}"
+        "PackageCode" = "8:{CB594F07-C20F-48CD-BB5A-808742CD3201}"
         "UpgradeCode" = "8:{AA9A427D-8B7D-4A60-BBA9-25D813B8A338}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

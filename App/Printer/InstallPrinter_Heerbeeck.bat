@@ -65,12 +65,12 @@ if %ERRORLEVEL% neq 0 (
     echo [%date% %time%] - Fout bij het starten van LPD Service! >> %logFile%
 )
 
-REM **** Printer installeren voor Kempenhorst ****
+REM **** Printer installeren voor Heerbeeck ****
 echo [%date% %time%] - Printer wordt geïnstalleerd voor Kempenhorst... >> %logFile%
-rundll32 printui.dll,PrintUIEntry /if /b "VoBo-Printer (KLEUR)" /r "KHC-PR01:Uniflow-KHC-Win" /m "Canon Generic Plus PCL6" >> %logFile% 2>&1
-rundll32 printui.dll,PrintUIEntry /if /b "VoBo-Printer" /r "KHC-PR01:Uniflow-KHC-Win" /m "Canon Generic Plus PCL6" >> %logFile% 2>&1
+rundll32 printui.dll,PrintUIEntry /if /b "VoBo-Printer (KLEUR)" /r "HBC-PR01:Uniflow-HBC-Win" /m "Canon Generic Plus PCL6" >> %logFile% 2>&1
+rundll32 printui.dll,PrintUIEntry /if /b "VoBo-Printer" /r "HBC-PR01:Uniflow-HBC-Win" /m "Canon Generic Plus PCL6" >> %logFile% 2>&1
 if %ERRORLEVEL% neq 0 (
-    echo [%date% %time%] - Fout bij het installeren van de printer voor Kempenhorst! >> %logFile%
+    echo [%date% %time%] - Fout bij het installeren van de printer voor Heerbeeck! >> %logFile%
     exit /b 1
 )
 
