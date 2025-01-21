@@ -36,6 +36,8 @@
             <GradientStop Color="#1E1E2F" Offset="0.0" />
             <GradientStop Color="#424242" Offset="1.0" />
         </LinearGradientBrush>
+        
+        
     </Window.Resources>
 
     <!-- Hoofd Grid -->
@@ -130,7 +132,8 @@
                     <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource SquareButtonStyle}" Click="ResetKeyboardLayout_Click">
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Keyboard" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
-                            <TextBlock Text="Toetsenbord Problemen" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                            <TextBlock Text="Toetsenbord Problemen" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center"
+                                       TextWrapping="Wrap" TextAlignment="Center" Width="80" />
                         </StackPanel>
                     </Button>
 

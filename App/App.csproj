@@ -25,6 +25,7 @@
     <None Remove="Printer\CanonDriver\cnp60m.cat" />
     <None Remove="Printer\CanonDriver\CNP60MA64.INF" />
     <None Remove="Printer\CanonDriver\gppcl6.cab" />
+    <None Remove="Printer\InstallPrinter_Heerbeeck.bat" />
     <None Remove="Printer\InstallPrinter_Kempenhorst.bat" />
     <None Remove="Printer\PrinterRegFiles\LPR.reg" />
     <None Remove="Printer\PrinterRegFiles\Printer.reg" />
@@ -38,6 +39,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Printer\CanonDriver\gppcl6.cab">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Printer\InstallPrinter_Heerbeeck.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Printer\InstallPrinter_Kempenhorst.bat">
