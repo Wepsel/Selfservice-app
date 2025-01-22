@@ -381,14 +381,15 @@ namespace MooieWelkomApp
             }
         }
         // Knop voor het wissen van de Google Chrome-cache
-        private void ClearChromeCache_Click(object sender, RoutedEventArgs e)
+        private void ClearBrowserCache_Click(object sender, RoutedEventArgs e)
         {
-            ClearChromeCache();
+            ClearBrowserCaches();
         }
-        private void ClearChromeCache()
+        private void ClearBrowserCaches()
         {
             try
             {
+                // Chrome cache pad
                 string chromeCachePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\Google\\Chrome\\User Data\\Default\\Cache";
                 if (System.IO.Directory.Exists(chromeCachePath))
                 {
@@ -399,10 +400,22 @@ namespace MooieWelkomApp
                 {
                     MessageBox.Show("Google Chrome-cachemap niet gevonden. Chrome is mogelijk niet geïnstalleerd.");
                 }
+
+                // Edge cache pad
+                string edgeCachePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\Microsoft\\Edge\\User Data\\Default\\Cache";
+                if (System.IO.Directory.Exists(edgeCachePath))
+                {
+                    System.IO.Directory.Delete(edgeCachePath, true);
+                    MessageBox.Show("De Microsoft Edge-cache is succesvol gewist.");
+                }
+                else
+                {
+                    MessageBox.Show("Microsoft Edge-cachemap niet gevonden. Edge is mogelijk niet geïnstalleerd.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Er is een fout opgetreden bij het wissen van de Google Chrome-cache: {ex.Message}");
+                MessageBox.Show($"Er is een fout opgetreden bij het wissen van de browser-caches: {ex.Message}");
             }
         }
 

@@ -138,10 +138,10 @@
                     </Button>
 
                     <!-- Chrome Cache -->
-                    <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareButtonStyle}" Click="ClearChromeCache_Click">
+                    <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource SquareButtonStyle}" Click="ClearBrowserCache_Click">
                         <StackPanel>
-                            <materialDesign:PackIcon Kind="GoogleChrome" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
-                            <TextBlock Text="Chrome Cache" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
+                            <materialDesign:PackIcon Kind="Internet" Width="50" Height="50" Foreground="White" HorizontalAlignment="Center" />
+                            <TextBlock Text="Internet Cache" FontSize="14" Foreground="White" Margin="0,5,0,0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
 
